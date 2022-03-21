@@ -3,19 +3,16 @@ package com.gini.error.handler;
 
 import com.gini.config.InventoryClientException;
 import com.gini.config.InventoryServerException;
-import feign.FeignException;
 
-import org.json.JSONObject;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
-import java.util.Map;
 
-
+@Slf4j
 @RestControllerAdvice
 public class FeignExceptionHandler {
 
@@ -27,8 +24,8 @@ public class FeignExceptionHandler {
 //    }
 
     @ExceptionHandler(InventoryClientException.class)
-    public ResponseEntity<RestErrorResponse> handleFeignStatusException(InventoryClientException e) {
-
+    public ResponseEntity<RestErrorResponse> handleWarehouseException(InventoryClientException e) {
+        log.warn("Error coming from warehouse -> errorCode: {} -- errorMessage: {} -- errors: {}", e.getErrorCode(), e.getErrorMessage(), e.getErrors(), e);
         RestErrorResponse response = new RestErrorResponse(
                 e.getErrorCode(),
                 e.getErrorMessage(),
@@ -40,10 +37,10 @@ public class FeignExceptionHandler {
 
     @ExceptionHandler(InventoryServerException.class)
     public ResponseEntity<RestErrorResponse> handleServerErrors(InventoryServerException e){
-
+        log.error("Error coming from warehouse: ", e);
         RestErrorResponse response = new RestErrorResponse(
-                e.getErrorCode(),
-                e.getErrorMessage(),
+                e.getError(),
+                e.getMessage(),
                 List.of() //just something here
         );
 

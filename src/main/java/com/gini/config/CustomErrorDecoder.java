@@ -3,6 +3,7 @@ package com.gini.config;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import feign.Response;
 import feign.codec.ErrorDecoder;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 
@@ -13,11 +14,13 @@ import java.nio.charset.StandardCharsets;
 import static feign.FeignException.errorStatus;
 
 @Slf4j
+@RequiredArgsConstructor
 public class CustomErrorDecoder implements ErrorDecoder {
+
+    private final ObjectMapper objectMapper;
 
     @Override
     public Exception decode(String methodKey, Response response) {
-        ObjectMapper objectMapper = new ObjectMapper();
 
             if (response.status() >= 400 && response.status() <= 499) {
 
@@ -34,7 +37,6 @@ public class CustomErrorDecoder implements ErrorDecoder {
 
             }
             if (response.status() >= 500 && response.status() <= 599) {
-                log.error("Server error ----> {}: ", response.reason());
 
                 try {
                     String errorMessage = IOUtils.toString(response.body().asInputStream(), String.valueOf(StandardCharsets.UTF_8));
