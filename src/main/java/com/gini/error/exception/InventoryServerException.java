@@ -1,4 +1,4 @@
-package com.gini.config;
+package com.gini.error.exception;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;

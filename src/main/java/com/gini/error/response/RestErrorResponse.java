@@ -1,4 +1,4 @@
-package com.gini.error.handler;
+package com.gini.error.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 

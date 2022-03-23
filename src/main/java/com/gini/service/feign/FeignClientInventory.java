@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@FeignClient(name = "inventory", url = "localhost:8080", configuration = FeignClientConfiguration.class)
+@FeignClient(name = "${warehouse.name}", url = "${warehouse.url}", configuration = FeignClientConfiguration.class)
 public interface FeignClientInventory {
 
     @PostMapping("/v1/parts")

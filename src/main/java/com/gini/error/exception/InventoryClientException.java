@@ -1,7 +1,7 @@
-package com.gini.config;
+package com.gini.error.exception;
 
 
-import com.gini.error.handler.InventoryErrors;
+import com.gini.error.response.InventoryErrors;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

@@ -1,9 +1,10 @@
 package com.gini.error.handler;
 
 
-import com.gini.config.InventoryClientException;
-import com.gini.config.InventoryServerException;
+import com.gini.error.exception.InventoryClientException;
+import com.gini.error.exception.InventoryServerException;
 
+import com.gini.error.response.RestErrorResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package com.gini.error.handler;
+package com.gini.error.response;
 
 public record InventoryErrors(
         String field,
