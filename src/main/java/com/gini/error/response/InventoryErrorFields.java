@@ -1,6 +1,6 @@
 package com.gini.error.response;
 
-public record InventoryErrors(
+public record InventoryErrorFields(
         String field,
         String message
 ) {

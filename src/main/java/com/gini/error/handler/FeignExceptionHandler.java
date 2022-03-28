@@ -3,7 +3,6 @@ package com.gini.error.handler;
 
 import com.gini.error.exception.InventoryClientException;
 import com.gini.error.exception.InventoryServerException;
-
 import com.gini.error.response.RestErrorResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -17,7 +16,7 @@ import java.util.List;
 @RestControllerAdvice
 public class FeignExceptionHandler {
 
-        //i keep this method because is gooooooooooooooooooooood:D!!!!!
+    //i keep this method because is gooooooooooooooooooooood:D!!!!!
 //    @ExceptionHandler(FeignException.BadRequest.class)
 //    public Map<String, Object> handleFeignStatusException(FeignException e, HttpServletResponse response) {
 //        response.setStatus(e.status());
@@ -37,7 +36,7 @@ public class FeignExceptionHandler {
     }
 
     @ExceptionHandler(InventoryServerException.class)
-    public ResponseEntity<RestErrorResponse> handleServerErrors(InventoryServerException e){
+    public ResponseEntity<RestErrorResponse> handleServerErrors(InventoryServerException e) {
         log.error("Error coming from warehouse: ", e);
         RestErrorResponse response = new RestErrorResponse(
                 e.getError(),

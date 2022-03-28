@@ -1,7 +1,7 @@
 package com.gini.error.exception;
 
 
-import com.gini.error.response.InventoryErrors;
+import com.gini.error.response.InventoryErrorFields;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,6 +17,6 @@ public class InventoryClientException extends RuntimeException {
     private int status;
     private String errorCode;
     private String errorMessage;
-    private List<InventoryErrors> errors = new ArrayList<>();
+    private List<InventoryErrorFields> errors = new ArrayList<>();
 
 }
