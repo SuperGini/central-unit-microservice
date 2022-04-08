@@ -1,6 +1,8 @@
 package com.gini.service.services;
 
 import com.gini.controller.request.PartRequest;
+import com.gini.controller.request.UpdatePartRequest;
+import com.gini.controller.response.FindPartResponse;
 import com.gini.controller.response.ListPartsResponse;
 import com.gini.controller.response.PartResponse;
 
@@ -12,4 +14,8 @@ public interface PartService {
     List<ListPartsResponse> findAllPartsWithPagination(String pageNumber);
 
     Integer findPartsCount();
+
+    Integer updatePart(UpdatePartRequest updatePartRequest);
+
+    FindPartResponse findPartByPartNumber(String partNumber);
 }

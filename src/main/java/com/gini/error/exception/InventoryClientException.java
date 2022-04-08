@@ -19,4 +19,16 @@ public class InventoryClientException extends RuntimeException {
     private String errorMessage;
     private List<InventoryErrorFields> errors = new ArrayList<>();
 
+
+    public InventoryClientException(InventoryClientException e) {
+        this.status = e.getStatus();
+        this.errorCode = e.getErrorCode();
+        this.errorMessage = e.errorMessage;
+    }
+
+    public InventoryClientException(int status, String errorCode, String errorMessage) {
+        this.status = status;
+        this.errorCode = errorCode;
+        this.errorMessage = errorMessage;
+    }
 }

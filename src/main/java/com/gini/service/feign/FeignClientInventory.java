@@ -1,6 +1,8 @@
 package com.gini.service.feign;
 
 import com.gini.controller.request.PartRequest;
+import com.gini.controller.request.UpdatePartRequest;
+import com.gini.controller.response.FindPartResponse;
 import com.gini.controller.response.ListPartsResponse;
 import com.gini.controller.response.PartResponse;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -8,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
@@ -25,5 +28,11 @@ public interface FeignClientInventory {
 
     @GetMapping("/v1/parts/count")
     ResponseEntity<Integer> findPartsCount();
+
+    @PutMapping("/v1/parts")
+    ResponseEntity<Integer> updatePart(@RequestBody UpdatePartRequest updatePartRequest);
+
+    @GetMapping("/v1/parts/part/{partNumber}")
+    ResponseEntity<FindPartResponse> findPartByPartNumber(@PathVariable String partNumber);
 
 }

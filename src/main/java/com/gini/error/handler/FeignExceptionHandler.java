@@ -26,7 +26,7 @@ public class FeignExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(InventoryClientException.class)
     public ResponseEntity<RestErrorResponse> handleWarehouseException(InventoryClientException e) {
-        log.warn("Error coming from warehouse -> errorCode: {} -- errorMessage: {} -- errors: {}", e.getErrorCode(), e.getErrorMessage(), e.getErrors(), e);
+        log.warn("Error -> errorCode: {} -- errorMessage: {} -- errors: {}", e.getErrorCode(), e.getErrorMessage(), e.getErrors(), e);
         RestErrorResponse response = new RestErrorResponse(
                 e.getErrorCode(),
                 e.getErrorMessage(),
@@ -38,7 +38,7 @@ public class FeignExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(InventoryServerException.class)
     public ResponseEntity<RestErrorResponse> handleServerErrors(InventoryServerException e) {
-        log.error("Error coming from warehouse: ", e);
+        log.error("Error: ", e);
         RestErrorResponse response = new RestErrorResponse(
                 e.getError(),
                 e.getMessage(),

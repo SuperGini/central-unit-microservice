@@ -15,8 +15,14 @@ public class InventoryServerException extends RuntimeException {
 
 
     public InventoryServerException(String message, int status, String error) {
-        super(message);
+        this.message = message;
         this.status = status;
         this.error = error;
+    }
+
+    public InventoryServerException(InventoryServerException e) {
+        this.status = e.status;
+        this.error = e.error;
+        this.message = e.message;
     }
 }
