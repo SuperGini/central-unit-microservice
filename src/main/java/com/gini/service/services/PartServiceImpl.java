@@ -3,18 +3,18 @@ package com.gini.service.services;
 import com.gini.controller.request.PartRequest;
 import com.gini.controller.request.UpdatePartRequest;
 import com.gini.controller.response.FindPartResponse;
+import com.gini.controller.response.FindPartWithCurrencyResponse;
 import com.gini.controller.response.ListPartsResponse;
 import com.gini.controller.response.PartResponse;
 import com.gini.controller.response.currency.api.CurrencyValuesResponse;
 import com.gini.convertor.Convertor;
-import com.gini.error.code.ErrorCodes;
 import com.gini.error.exception.CurrencyClientError;
 import com.gini.error.exception.CurrencyServerError;
 import com.gini.error.exception.InventoryClientException;
 import com.gini.error.exception.InventoryServerException;
 import com.gini.mapper.PartDetailsDto;
 import com.gini.repositories.PartDetailsRepository;
-import com.gini.service.currency.CurrencyWebClientService;
+import com.gini.service.currency.CurrencyRestClientService;
 import com.gini.service.feign.FeignClientInventory;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -33,7 +33,7 @@ public class PartServiceImpl implements PartService {
 
     private final FeignClientInventory feignClientInventory;
     private final PartDetailsRepository partDetailsRepository;
-    private final CurrencyWebClientService currencyWebClientService;
+    private final CurrencyRestClientService currencyWebClientService;
 
     @Override
     public PartResponse createPart(PartRequest request) {
@@ -57,7 +57,7 @@ public class PartServiceImpl implements PartService {
     }
 
     @Override
-    public FindPartResponse findPartByPartNumber(String partNumber) {
+    public FindPartWithCurrencyResponse findPartByPartNumber(String partNumber) {
 
         PartDetailsDto partDetailsDto = new PartDetailsDto();
         partDetailsDto.setPartNumber(partNumber);
@@ -83,7 +83,7 @@ public class PartServiceImpl implements PartService {
             throw new InventoryServerException(e);
 
         } catch (Exception e) {
-            //todo: circuit breaker? fall oof method?
+            //todo: circuit breaker? fall of method?
             throw new RuntimeException("warehouse service can't be accessed -> BUMMMMMMMMMMMMMMMMMMMMMMMMMMMMM :DDDDD");
         }
 
@@ -95,19 +95,22 @@ public class PartServiceImpl implements PartService {
         } catch (CurrencyClientError e) {
             log.error("currency error message: {} ", e.getMessage());
             partDetailsDto.withCurrencyClientException(e);
-            saveToMongoDB(partDetailsDto);
-            throw new InventoryClientException(e.getStatus(), ErrorCodes.CURRENCY_CLIENT_ERROR.toString(), e.getMessage());
 
         } catch (CurrencyServerError e) {
             log.error("currency error message: {} ", e.getMessage());
             partDetailsDto.withCurrencyServerError(e);
-            saveToMongoDB(partDetailsDto);
-            throw new InventoryServerException(e.getMessage(), e.getStatus(), ErrorCodes.CURRENCY_SERVER_ERROR.toString());
         }
 
-        setPartPricesInRONinUSDinEUR(partDetailsDto, response, partResponse);
+
+        if (partDetailsDto.getError() == null) {
+            setPartPricesInRONinUSDinEUR(partDetailsDto, response, partResponse);
+            partDetailsDto.setBasePrice(null);
+            partDetailsDto.setCurrency(null);
+        }
+
+
         saveToMongoDB(partDetailsDto);
-        return partResponse;
+        return Convertor.convertToFindPartWithCurrencyResponse(partDetailsDto);
     }
 
     private void setPartPricesInRONinUSDinEUR(PartDetailsDto partDetailsDto, CurrencyValuesResponse response, FindPartResponse partResponse) {

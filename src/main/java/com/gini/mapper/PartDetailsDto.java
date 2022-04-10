@@ -19,6 +19,7 @@ public class PartDetailsDto {
     private String partName;
     private String partCount;
     private String partNumber;
+    private String basePrice;
     private String currency;
     private String manufacturer;
     private String priceRON;
@@ -42,6 +43,7 @@ public class PartDetailsDto {
         setPartNumber(partResponse.getPartNumber());
         setCurrency(partResponse.getCurrency());
         setManufacturer(partResponse.getManufacturer());
+        setBasePrice(partResponse.getPrice().toString());
         return this;
     }
 

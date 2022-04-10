@@ -21,6 +21,7 @@ public class PartDetails {
     private String partCount;
     private String partNumber;
     private String currency;
+    private String basePrice;
     private String manufacturer;
     private String priceRON;
     private String priceEURO;

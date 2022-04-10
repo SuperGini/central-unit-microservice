@@ -1,13 +1,19 @@
 package com.gini.controller.response;
 
-import lombok.Builder;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import java.math.BigDecimal;
 import java.util.UUID;
 
-@Builder
+@SuperBuilder
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@JsonFormat(shape = JsonFormat.Shape.STRING)
 public class FindPartResponse {
 
     private UUID id;
