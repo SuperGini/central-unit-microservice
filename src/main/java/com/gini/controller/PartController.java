@@ -2,9 +2,9 @@ package com.gini.controller;
 
 import com.gini.controller.request.PartRequest;
 import com.gini.controller.request.UpdatePartRequest;
-import com.gini.controller.response.FindPartResponse;
-import com.gini.controller.response.ListPartsResponse;
-import com.gini.controller.response.PartResponse;
+import com.gini.repositories.response.FindPartResponse;
+import com.gini.repositories.response.ListPartsResponse;
+import com.gini.repositories.response.PartResponse;
 import com.gini.service.services.PartServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

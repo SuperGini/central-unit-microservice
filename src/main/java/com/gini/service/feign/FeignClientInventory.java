@@ -2,9 +2,9 @@ package com.gini.service.feign;
 
 import com.gini.controller.request.PartRequest;
 import com.gini.controller.request.UpdatePartRequest;
-import com.gini.controller.response.FindPartResponse;
-import com.gini.controller.response.ListPartsResponse;
-import com.gini.controller.response.PartResponse;
+import com.gini.repositories.response.FindPartResponse;
+import com.gini.repositories.response.ListPartsResponse;
+import com.gini.repositories.response.PartResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

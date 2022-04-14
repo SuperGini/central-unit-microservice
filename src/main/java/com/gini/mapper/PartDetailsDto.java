@@ -1,7 +1,7 @@
 package com.gini.mapper;
 
-import com.gini.controller.response.FindPartResponse;
-import com.gini.controller.response.currency.api.CurrencyValuesResponse;
+import com.gini.repositories.response.FindPartResponse;
+import com.gini.repositories.response.currency.api.CurrencyValuesResponse;
 import com.gini.error.exception.CurrencyClientError;
 import com.gini.error.exception.CurrencyServerError;
 import com.gini.error.exception.InventoryClientException;

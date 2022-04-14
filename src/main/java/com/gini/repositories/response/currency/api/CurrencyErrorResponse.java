@@ -1,4 +1,4 @@
-package com.gini.controller.response.currency.api;
+package com.gini.repositories.response.currency.api;
 
 import lombok.Builder;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package com.gini.controller.response.currency.api;
+package com.gini.repositories.response.currency.api;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;

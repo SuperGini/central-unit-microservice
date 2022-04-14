@@ -1,7 +1,7 @@
 package com.gini.convertor;
 
-import com.gini.controller.response.FindPartWithCurrencyResponse;
-import com.gini.controller.response.currency.api.CurrencyErrorResponse;
+import com.gini.repositories.response.FindPartWithCurrencyResponse;
+import com.gini.repositories.response.currency.api.CurrencyErrorResponse;
 import com.gini.entities.PartDetails;
 import com.gini.mapper.PartDetailsDto;
 import lombok.experimental.UtilityClass;

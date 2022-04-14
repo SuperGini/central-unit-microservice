@@ -1,7 +1,7 @@
 package com.gini.service.currency;
 
 
-import com.gini.controller.response.currency.api.CurrencyValuesResponse;
+import com.gini.repositories.response.currency.api.CurrencyValuesResponse;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

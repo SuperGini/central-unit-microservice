@@ -1,6 +1,6 @@
-package com.gini.controller.response;
+package com.gini.repositories.response;
 
-import com.gini.controller.response.currency.api.CurrencyErrorResponse;
+import com.gini.repositories.response.currency.api.CurrencyErrorResponse;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;

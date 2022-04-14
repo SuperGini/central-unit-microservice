@@ -1,4 +1,4 @@
-package com.gini.controller.response;
+package com.gini.repositories.response;
 
 import lombok.Data;
 

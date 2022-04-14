@@ -1,6 +1,6 @@
 package com.gini.service.currency;
 
-import com.gini.controller.response.currency.api.CurrencyValuesResponse;
+import com.gini.repositories.response.currency.api.CurrencyValuesResponse;
 
 public interface CurrencyRestClientService {
 
