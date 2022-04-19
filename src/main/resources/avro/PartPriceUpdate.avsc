@@ -1,0 +1,41 @@
+{
+	"type": "record",
+	"namespace": "com.gini.avro.data",
+	"name": "PartPriceUpdate",
+	"doc": "Sample default value",
+	"fields": [
+		{
+			"name": "partId",
+			"type": "string"
+		},
+
+		{
+			"name": "partName",
+			"type": "string"
+		},
+
+		{
+			"name": "partNumber",
+			"type": "string"
+		},
+
+		{
+			"name": "currency",
+			"type": "string"
+		},
+
+		{
+			"name": "price",
+			"type": "string"
+		},
+
+		{
+			"name":"manufacturer",
+			"type": [
+				"null",
+				"string"
+			],
+			"default": null
+		}
+	]
+}

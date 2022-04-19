@@ -1,5 +1,6 @@
 package com.gini.convertor;
 
+import com.gini.avro.data.PartPriceUpdateWithCurrency;
 import com.gini.repositories.response.FindPartWithCurrencyResponse;
 import com.gini.repositories.response.currency.api.CurrencyErrorResponse;
 import com.gini.entities.PartDetails;
@@ -68,6 +69,18 @@ public class Convertor {
                 .ifPresent(thenHasError -> setPartPriceAndCurrency(dto, partResponseWithCurrency));
 
         return partResponseWithCurrency;
+    }
+
+    public PartPriceUpdateWithCurrency convertToKafkaMessage(FindPartWithCurrencyResponse part) {
+        return PartPriceUpdateWithCurrency.newBuilder()
+                .setPartId(part.getId().toString())
+                .setPartName(part.getPartName())
+                .setPartNumber(part.getPartNumber())
+                .setPriceRON(part.getPriceRON())
+                .setPriceEURO(part.getPriceEURO())
+                .setPriceUSD(part.getPriceUSD())
+                .setManufacturer(part.getManufacturer())
+                .build();
     }
 
 
