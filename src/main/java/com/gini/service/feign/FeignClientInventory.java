@@ -35,4 +35,7 @@ public interface FeignClientInventory {
     @GetMapping("/v1/parts/part/{partNumber}")
     ResponseEntity<FindPartResponse> findPartByPartNumber(@PathVariable String partNumber);
 
+    @PutMapping("/parts/part/{partNumber}/{partPrice}")
+    ResponseEntity<FindPartResponse> updatePartPrice(@PathVariable String partNumber, @PathVariable String partPrice);
+
 }

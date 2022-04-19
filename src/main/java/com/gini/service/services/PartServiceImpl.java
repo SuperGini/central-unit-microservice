@@ -57,6 +57,11 @@ public class PartServiceImpl implements PartService {
     }
 
     @Override
+    public FindPartResponse updatePartPrice(String parNumber, String partPrice){
+        return feignClientInventory.updatePartPrice(partPrice, partPrice).getBody();
+    }
+
+    @Override
     public FindPartWithCurrencyResponse findPartByPartNumber(String partNumber) {
 
         PartDetailsDto partDetailsDto = new PartDetailsDto();

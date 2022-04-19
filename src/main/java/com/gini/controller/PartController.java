@@ -59,10 +59,17 @@ public class PartController {
 
     @GetMapping("/parts/part/{partNumber}")
     public ResponseEntity<FindPartResponse> findPartByPartNumber(@PathVariable String partNumber) {
-
         return ResponseEntity
-                .ok()
-                .body(partService.findPartByPartNumber(partNumber));
+                            .ok()
+                                .body(partService.findPartByPartNumber(partNumber));
+
     }
 
+    @PutMapping("/parts/part/{partNumber}/{partPrice}")
+    public ResponseEntity<FindPartResponse> updatePartPrice(@PathVariable String partNumber, @PathVariable String partPrice ){
+        return ResponseEntity
+                            .ok()
+                                .body(partService.updatePartPrice(partNumber, partPrice));
+
+    }
 }
