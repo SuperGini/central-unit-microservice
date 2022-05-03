@@ -47,4 +47,6 @@ public class FeignExceptionHandler extends ResponseEntityExceptionHandler {
 
         return new ResponseEntity<>(response, HttpStatus.valueOf(e.getStatus()));
     }
+
+
 }

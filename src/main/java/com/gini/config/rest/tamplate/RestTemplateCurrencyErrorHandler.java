@@ -1,4 +1,4 @@
-package com.gini.config.logging;
+package com.gini.config.rest.tamplate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gini.error.exception.CurrencyClientError;
