@@ -17,7 +17,6 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class BasicValidationServceFilter extends OncePerRequestFilter {
 
-   // @Autowired
     private final AuthenticationManager authenticationManager;
 
     @Override
