@@ -9,6 +9,6 @@ public record RestErrorResponse (
          String errorCode,
          String errorMessage,
          @JsonInclude(JsonInclude.Include.NON_EMPTY)
-         List<InventoryErrors> errors
+         List<InventoryErrorFields> errors
 ){
 }
