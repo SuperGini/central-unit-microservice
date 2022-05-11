@@ -1,0 +1,77 @@
+
+spring:
+  application:
+    name: central
+  data:
+    mongodb:
+      host: ${DB_HOST:localhost}
+      port: ${DB_PORT:27017}
+      database: ${DB_NAME:central_unit}
+  kafka:
+    bootstrap-servers:
+      - localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+    consumer:
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+      group-id: x
+      auto-offset-reset: earliest
+    properties:
+      schema.registry.url: http://localhost:8081
+      specific.avro.reader: true
+
+
+user:
+  username: gigi
+  password: 123
+  roles: VALIDATION-UNIT
+#  security:
+#    user:
+#      name: gigi
+#      password: 123
+#  main:
+#    allow-circular-references: true
+
+
+
+
+
+#  config:
+#    import: configserver:http://localhost:8888
+
+
+server:
+  port: 8085
+
+# feign client additional configuration: can't add CustomErrorDecoder here because I need
+# @NoArgsConstructor for that class
+#feign:
+#  client:
+#    config:
+#      warehouse:
+#        connectTimeout: 3000
+#        readTimeout: 1000
+#        loggerLevel: basic
+
+
+logging:
+  level:
+    com.gini: DEBUG
+    org:
+      zalando:
+        logbook: TRACE
+ #   org.apache.http: DEBUG
+ #   httpclient.wire: DEBUG
+#
+warehouse:
+  name: warehouse
+  url: http://localhost:8090
+
+currency:
+  id: 060b60b3253743a8a641c844f8a63568
+
+
+
+
