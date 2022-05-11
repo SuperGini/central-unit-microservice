@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 public class BasicValidationServceFilter extends OncePerRequestFilter {
@@ -24,18 +25,17 @@ public class BasicValidationServceFilter extends OncePerRequestFilter {
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
 
-
         String authorization = request.getHeader("Authorization");
 
-        if(authorization == null){
-            throw new BadCredentialsException("Missing basic Authorization credentials");
-        }
+        Optional
+                .ofNullable(authorization)
+                    .orElseThrow(
+                        () -> new BadCredentialsException("Missing basic Authorization credentials"));
 
-        Authentication authentication = new ValidationServiceAuthentification(authorization, null);
-        Authentication fullyAuthenticated = authenticationManager.authenticate(authentication);
+        var authentication = new ValidationServiceAuthentification(authorization, null);
+        var fullyAuthenticated = authenticationManager.authenticate(authentication);
+
         SecurityContextHolder.getContext().setAuthentication(fullyAuthenticated);
         filterChain.doFilter(request, response);
-
     }
-
 }
